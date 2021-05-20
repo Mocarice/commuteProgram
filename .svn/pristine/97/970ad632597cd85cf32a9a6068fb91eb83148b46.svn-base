@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<select id = "loginCheck" resultType="String">
+		SELECT userName FROM member
+		WHERE userId = #{userId} AND userPw = #{userPw}
+	</select>
+	
+	
+	<select id ="viewMember" resultType="com.hwan.commuteProgram.service.MemberVO">
+		SELECT
+			userName,
+			userId,
+			role,
+			ip
+		FROM member
+		WHERE userId = #{userId} AND userPw = #{userPw}
+	</select>
+	
+	<insert id = "addMember">
+		INSERT INTO
+			member (userId, userPw, userName, ip)
+		VALUES
+			(#{userId},#{userPw}, #{userName}, #{ip})
+	</insert>
+	
+	<select id = "totalMember" resultType="com.hwan.commuteProgram.service.MemberVO">
+		SELECT
+			userName,
+			userId
+		FROM member
+	</select>
+
+</mapper>

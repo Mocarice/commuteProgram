@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="commute">
+
+	
+	
+	<insert id = "inTime_put">
+		INSERT INTO
+			commute (userId, userName, date, inTime)
+		VALUES
+			(#{userId}, #{userName}, #{date}, #{inTime})
+	</insert>
+	
+	<update id = "outTime_put">
+		UPDATE
+			commute
+		SET
+			outTime = #{outTime}
+		WHERE userId = #{userId} AND date = #{date}
+	</update>
+	
+	<update id = "totalTime_put">
+		UPDATE
+			commute
+		SET
+			totalTime = #{totalTime}
+		WHERE userId = #{userId} AND date = #{date}
+	</update>
+	
+	<select id = "commuteTime"  resultType = "com.hwan.commuteProgram.service.CommuteVO">
+		SELECT
+			*
+		FROM 
+			commute
+		WHERE
+			1=1
+		<if test="userName !=null">
+		AND userName = #{userName}
+		</if>
+			
+	</select>
+
+</mapper>
